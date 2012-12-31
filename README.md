@@ -1,6 +1,6 @@
 # Arduino Life
 This is another clone of John Conway's Game of Life for arduino created mostly
-for the [Freetronics dot matrix display](www.freetronics.com/dmd).
+for the [Freetronics dot matrix display](http://www.freetronics.com/dmd).
 
 Life.cpp also compiles in visual studio for debugging and is flexible enough
 to work with any screen using a rendering function.
