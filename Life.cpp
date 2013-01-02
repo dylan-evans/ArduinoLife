@@ -23,9 +23,9 @@ Life::Life(byte *framespace, byte width, byte height)
 {
     this->width = width;
     this->height = height;
-	this->align = width / 8 + (width % 8 ? 1 : 0);
+    this->align = width / 8 + (width % 8 ? 1 : 0);
     this->size = this->align * height;
-	
+    
     memset(framespace, '\0', this->size * 2);
     prev = framespace;
     current = framespace + this->size;
@@ -74,14 +74,14 @@ void Life::render(bool all, void (*renderPixel)(byte x, byte y, bool set))
     {
         for(int col = 0; col < this->width; col++)
         {
-			int val = getCell(this->current, this->align, col, row);
-			if(all || getCell(this->prev, this->align, col, row) != val)
-			{
-				if(val)
-					renderPixel(col, row, true);
-				else
-					renderPixel(col, row, false);
-			}
+            int val = getCell(this->current, this->align, col, row);
+            if(all || getCell(this->prev, this->align, col, row) != val)
+            {
+                if(val)
+                    renderPixel(col, row, true);
+                else
+                    renderPixel(col, row, false);
+            }
         }
     } 
 }
@@ -99,23 +99,23 @@ bool Life::step()
     {
         for(int col = 0; col < this->width; col++)
         {
-			byte alive = getCell(this->prev, this->align, col, row);
+            byte alive = getCell(this->prev, this->align, col, row);
             switch(calculateCell(col, row))
             {
                 case 3:
-					// Cell becomes alive
+                    // Cell becomes alive
                     if(!alive) changes++;
-					setCell(this->current, this->align, col, row);
+                    setCell(this->current, this->align, col, row);
                     break;
                 case 2:
-					// Maintains the current state
+                    // Maintains the current state
                     if(alive)
                         setCell(this->current, this->align, col, row);
                     else
-						clearCell(this->current, this->align, col, row);
+                        clearCell(this->current, this->align, col, row);
                     break;
                 default:
-					// Clear the cell
+                    // Clear the cell
                     if(alive) changes++;
                     clearCell(this->current, this->align, col, row);
             }
@@ -140,7 +140,7 @@ byte Life::calculateCell(byte col, byte row)
         {
             char x = col + xmod;
             char y = row + ymod;
-			if((!xmod && !ymod) || x < 0 || x >= this->width || y < 0 || y >= this->height) 
+            if((!xmod && !ymod) || x < 0 || x >= this->width || y < 0 || y >= this->height) 
                 continue;
             if(getCell(this->prev, this->align, x, y)) tally++;
         }
@@ -166,7 +166,7 @@ bool Life::loopCheck(byte changes)
             {
                 byte cur = history[i];
                 if(cur == history[i+range] && cur == history[i+(range*2)]) 
-					match++;
+                    match++;
             }
             if(match == range) return true;
         }
