@@ -37,7 +37,7 @@ void setup()
 void loop()
 {
     //dmd.clearScreen(true);
-    grid.render(renderPixel);
+    grid.render(false, renderPixel);
     delay(100);
     if(!grid.step())
     {
@@ -46,7 +46,7 @@ void loop()
             // Flash the screen
             dmd.clearScreen(true);
             delay(150);
-            grid.render(renderPixel);
+            grid.render(true, renderPixel);
             delay(300);
         }    
         grid.randomize();

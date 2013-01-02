@@ -17,7 +17,7 @@ class Life
 		void flip();
 		void clear();
 		void randomize();
-		void render(void (*renderPixel)(byte x, byte y, bool set));
+		void render(bool all, void (*renderPixel)(byte x, byte y, bool set));
 		bool step();
     
     private:

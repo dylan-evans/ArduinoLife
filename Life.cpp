@@ -65,16 +65,17 @@ void Life::randomize()
 /**
  * Check each cell for changes and write the appropriate value using
  * the function passed as the argument.
+ * @param all False to only draw cells which have changed.
  * @param renderPixel The function which performs the actual write.
  */
-void Life::render(void (*renderPixel)(byte x, byte y, bool set))
+void Life::render(bool all, void (*renderPixel)(byte x, byte y, bool set))
 {
     for(int row = 0; row < this->height; row++)
     {
         for(int col = 0; col < this->width; col++)
         {
 			int val = getCell(this->current, this->align, col, row);
-			if(getCell(this->prev, this->align, col, row) != val)
+			if(all || getCell(this->prev, this->align, col, row) != val)
 			{
 				if(val)
 					renderPixel(col, row, true);
